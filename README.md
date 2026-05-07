@@ -5,19 +5,15 @@ session logs.
 
 ## Install
 
-For Codex:
+One copy-paste install/update command:
 
 ```bash
-mkdir -p ~/.codex/skills
-git clone https://github.com/peteromallet/search-agent-logs.git ~/.codex/skills/search-agent-logs
+tmp="${TMPDIR:-/tmp}/search-agent-logs-skill" && rm -rf "$tmp" && git clone https://github.com/peteromallet/search-agent-logs.git "$tmp" && mkdir -p ~/.codex/skills ~/.claude/skills && rm -rf ~/.codex/skills/search-agent-logs ~/.claude/skills/search-agent-logs && cp -R "$tmp" ~/.codex/skills/search-agent-logs && cp -R "$tmp" ~/.claude/skills/search-agent-logs && { printf '# search-agent-logs\n\n'; sed '1,/^# Search Agent Logs$/d' "$tmp/SKILL.md"; } > "$tmp/AGENTS.md" && echo "Installed for Codex: ~/.codex/skills/search-agent-logs" && echo "Installed for Claude Code: ~/.claude/skills/search-agent-logs" && echo "AGENTS.md-compatible instructions: $tmp/AGENTS.md"
 ```
 
-For Claude Code:
-
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/peteromallet/search-agent-logs.git ~/.claude/skills/search-agent-logs
-```
+For agents that only read `AGENTS.md`, append or copy the generated
+`$tmp/AGENTS.md` content into that agent's repo/root instruction file. The
+helper script remains in the cloned skill directory.
 
 ## Usage
 
