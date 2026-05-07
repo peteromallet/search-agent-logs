@@ -1,0 +1,4 @@
+interface:
+  display_name: "Search Agent Logs"
+  short_description: "Search Claude, Codex, Hermes, and subagent logs."
+  default_prompt: "Search local agent logs for a keyword, dropped session, or recent loose thread."
